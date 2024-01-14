@@ -95,7 +95,7 @@ class Manipulator(RemoteAPI):
 
         for i in range(n):
             if self.initial_types[i, 4]:
-                self.initial_param[i, self.initial_types[i, 3].astype(np.int) - 1] = self.state()[0][i]['position']
+                self.initial_param[i, self.initial_types[i, 3].astype(int) - 1] = self.state()[0][i]['position']
 
     def trajectory(self, goals, blocking = True):
         response, _ = self.post_json("api/manipulator/trajectory", goals, {"blocking" : blocking})
@@ -173,7 +173,7 @@ class Manipulator(RemoteAPI):
 
             for i in range(n):
                 if self.initial_types[i, 4]:
-                    parameters[i, self.initial_types[i, 3].astype(np.int) - 1] = state[i]
+                    parameters[i, self.initial_types[i, 3].astype(int) - 1] = state[i]
 
             # Get current position
             cur_position = self.calculate_positions(parameters, origin)
@@ -202,9 +202,9 @@ class Manipulator(RemoteAPI):
 
         for i in range(nj):
             if self.initial_types[i, 4]:
-                parameters[i, self.initial_types[i, 3].astype(np.int) - 1, :] = start[i]
+                parameters[i, self.initial_types[i, 3].astype(int) - 1, :] = start[i]
 
-        parameters[joint, self.initial_types[joint, 3].astype(np.int) - 1, :] = samples    
+        parameters[joint, self.initial_types[joint, 3].astype(int) - 1, :] = samples    
    
         positions = self.calculate_positions(parameters, origin)
     
